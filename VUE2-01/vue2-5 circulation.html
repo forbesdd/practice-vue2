@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+
+<body>
+
+      <div id="app">
+            <ul v-for="(item,index) in list">
+                  <li> {{item}} </li>
+            </ul>
+            <button @click="fn">循環</button>
+      </div>
+
+
+
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script>
+            const app = new Vue({
+                  el: '#app',
+                  data: {
+                        list: ['田中', '川村', '木田']
+
+
+                  },
+                  methods: {
+                        fn() {
+                              console.log("this.list")
+                              let el = this.list.shift()
+                              this.list.push(el)
+                              console.log(el)
+                        }
+
+                  }
+            })
+
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+
+<body>
+
+      <div id="app">
+            <ul v-for="(item,index) in list" :key="item.id">
+                  <li> {{ item.id }} <button @click="del(item.id)">削除</button></li>
+            </ul>
+            <button @click="add">生成</button>
+
+      </div>
+
+
+
+
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script>
+            const app = new Vue({
+                  el: '#app',
+                  data: {
+
+                        list: [
+                              { id: 1 },
+                              { id: 2 },
+                              { id: 3 }
+                        ],
+
+
+                  },
+                  methods: {
+                        del(id) {
+                              this.list = this.list.filter(item => item.id !== id)
+                        },
+                        add() {
+                              console.log(this.list.length)
+                              this.list.push({
+
+                                    id: this.idData(1, 20)
+                              })
+                        },
+                        idData(max, min) {
+                              return Math.floor(Math.random() * (max - min + 1)) + min
+                        }
+
+                        // clear() {
+                        //       this.list = []
+                        // }
+                  }
+            })
+      </script>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <title>メモ帳</title>
+</head>
+
+<body>
+
+  <!-- 本体区域 -->
+  <section id="app">
+    <!-- 入力区域 -->
+    <header class="header">
+      <h1>メモ帳</h1>
+      <input v-model="todoName" placeholder="TODOを入力" class="new-todo" />
+      <button @click="add" class="add">TODO</button>
+    </header>
+    <!-- 配列区域 -->
+    <section class="main">
+      <ul class="todo-list">
+        <li v-for="(item,index) in list" ::key="item.id" class="todo">
+          <div class="view">
+            <span class="index"> {{index + 1 }} </span> <label> {{item.name}} </label>
+            <button @click="del(item.id)" class="destroy"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- 統計削除 -->
+    <footer class="footer">
+      <!-- 統計 -->
+      <span class="todo-count">合　計:<strong> 1 </strong></span>
+      <!-- 削除 -->
+      <button @click="clear" class="clear-completed">
+        全部削除
+      </button>
+    </footer>
+  </section>
+
+  <!-- フッター -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        todoName: '',
+        list: [
+          { id: 1, name: '旅行' },
+          { id: 2, name: '水泳' }
+        ]
+      },
+      methods: {
+        del(id) {
+          this.list = this.list.filter(item => item.id !== id)
+        },
+        add() {
+          if (this.todoName.trim() === '') {
+            alert('TODOを入力してください！')
+            return
+          }
+          this.list.unshift({
+            id: +new Date(),
+            name: this.todoName
+          })
+          this.todoName = ''
+        },
+        clear() {
+          this.list = []
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>

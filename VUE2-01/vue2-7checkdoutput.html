@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+
+      <style>
+            #app {
+                  display: flex;
+            }
+      </style>
+</head>
+
+<body>
+
+      <div id="app">
+            <form v-for="(item,index) in list" @click="fn(item)" action="">
+                  <input type="checkbox">{{item}}
+                  <br>
+            </form>
+
+            <div>
+                  <ul>
+                        <li v-for="(item,index) in outList" :key="item"> {{item}} </li>
+                  </ul>
+            </div>
+
+      </div>
+
+
+
+
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script>
+            const app = new Vue({
+                  el: '#app',
+                  data: {
+                        list:
+                              ["娯楽", "映画", "ドラマ", "経済", "軍事", "IT", "観光"],
+
+                        outList: []
+
+
+                  },
+                  methods: {
+                        fn(item) {
+                              console.log(item.checked = true)
+                              this.outList = this.list.filter(item => (item.checked = true))
+                        }
+
+
+                  }
+
+            })
+      </script>
+</body>
+
+</html>
